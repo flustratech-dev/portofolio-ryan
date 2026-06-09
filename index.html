@@ -17,6 +17,7 @@
     <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -39,7 +40,7 @@
     <!-- CSS -->
     <link href="css/style.css" rel="stylesheet">
 </head>
-<body class="font-sans antialiased selection:bg-blue selection:text-darker">
+<body class="font-sans antialiased selection:bg-blue selection:text-white bg-gray-50 dark:bg-dark dark:selection:bg-blue dark:selection:text-white">
 
     <!-- Custom Cursor -->
     <div class="cursor-dot" id="cursor-dot"></div>
@@ -49,19 +50,22 @@
     <canvas id="canvas-bg"></canvas>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-transparent" id="navbar">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-serif font-bold text-white tracking-widest">
+            <a href="#" class="text-2xl font-serif font-bold text-gray-900 dark:text-white tracking-widest">
                 RYAN<span class="text-blue">.DEV</span>
             </a>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex flex-1 justify-center space-x-8 items-center">
-                <a href="#beranda" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition">Beranda</a>
-                <a href="#tentang" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition">Tentang</a>
-                <a href="#karya" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition">Karya</a>
+                <a href="#beranda" class="nav-link text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Beranda</a>
+                <a href="#tentang" class="nav-link text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Tentang</a>
+                <a href="#karya" class="nav-link text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Karya</a>
             </div>
             <div class="hidden md:flex">
+                <button id="theme-toggle" class="mr-4 p-2 rounded-full hover:bg-gray-800 transition">
+                    <i id="theme-icon" class="fas fa-sun text-gray-300"></i>
+                </button>
                 <a href="https://wa.me/6285774410978" target="_blank" class="px-5 py-2 text-sm font-medium border border-blue text-blue rounded-full hover:bg-blue hover:text-darker transition duration-300">Hubungi Saya</a>
             </div>
 
@@ -72,11 +76,11 @@
         </div>
 
         <!-- Mobile Menu (Hidden by default) -->
-        <div class="md:hidden hidden absolute w-full bg-darker/95 backdrop-blur-lg border-b border-white/10" id="mobile-menu">
+        <div class="md:hidden hidden absolute w-full bg-white dark:bg-darker/95 backdrop-blur-lg border-b border-gray-200 dark:border-white/10" id="mobile-menu">
             <div class="flex flex-col px-6 py-4 space-y-4">
-                <a href="#beranda" class="text-gray-300 hover:text-blue transition">Beranda</a>
-                <a href="#tentang" class="text-gray-300 hover:text-blue transition">Tentang</a>
-                <a href="#karya" class="text-gray-300 hover:text-blue transition">Karya</a>
+                <a href="#beranda" class="text-gray-700 dark:text-gray-300 hover:text-blue transition">Beranda</a>
+                <a href="#tentang" class="text-gray-700 dark:text-gray-300 hover:text-blue transition">Tentang</a>
+                <a href="#karya" class="text-gray-700 dark:text-gray-300 hover:text-blue transition">Karya</a>
                 <a href="#kontak" class="text-blue font-medium">Hubungi Saya</a>
             </div>
         </div>
@@ -88,7 +92,7 @@
             <!-- Text Side -->
             <div class="text-left reveal">
                 <p class="text-blue uppercase tracking-[0.3em] text-lg font-medium mb-2">Hai, saya</p>
-                <h1 class="text-5xl md:text-6xl font-serif font-bold text-white mb-6">
+                <h1 class="text-5xl md:text-6xl font-serif font-bold text-gray-900 dark:text-white mb-6">
                     Muhamad Ryan Rizki
                 </h1>
 
@@ -116,20 +120,20 @@
     <section id="tentang" class="py-24 relative">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Tentang <span class="text-blue font-serif not-italic">Saya</span></h2>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-4">Tentang <span class="text-blue font-serif not-italic">Saya</span></h2>
                 <div class="w-16 h-1 bg-blue mx-auto rounded-full"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div class="reveal md:col-span-2 md:text-center max-w-4xl mx-auto">
-                    <h3 class="text-2xl font-medium text-white mb-4">Mahasiswa & Full Stack Developer</h3>
-                    <p class="text-gray-400 leading-relaxed mb-6">
+                    <h3 class="text-2xl font-medium text-gray-900 dark:text-white mb-4">Mahasiswa & Full Stack Developer</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
                         Halo! Saya Muhamad Ryan Rizki, seorang mahasiswa Teknologi Informasi di Telkom University. Sebagai Full Stack Developer, saya berfokus membangun solusi digital yang efisien, skalabel, dan user-friendly. Passion saya terletak pada pengembangan aplikasi web modern, di mana saya menggabungkan kreativitas desain dengan logika pemrograman yang kuat.
                     </p>
-                    <p class="text-gray-400 leading-relaxed mb-6">
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
                         Selama perjalanan akademik dan proyek mandiri, saya telah mengasah kemampuan dalam berbagai teknologi mulai dari frontend hingga backend. Saya selalu tertantang untuk mempelajari hal baru, mengikuti tren industri terkini, dan mengimplementasikannya dalam proyek yang memberikan dampak positif bagi pengguna.
                     </p>
-                    <p class="text-gray-400 leading-relaxed mb-8">
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
                         Tujuan utama saya adalah terus berkembang sebagai pengembang profesional yang mampu menciptakan solusi inovatif untuk masalah dunia nyata. Saya sangat terbuka untuk kolaborasi, diskusi proyek, atau sekadar bertukar ide mengenai pengembangan teknologi web. Mari membangun sesuatu yang luar biasa bersama!
                     </p>
                 </div>
@@ -141,7 +145,7 @@
     <section id="karya" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Karya <span class="text-blue font-serif not-italic">Terbaik</span></h2>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-4">Karya <span class="text-blue font-serif not-italic">Terbaik</span></h2>
                 <div class="w-16 h-1 bg-blue mx-auto rounded-full mb-6"></div>
             </div>
 
@@ -150,7 +154,7 @@
                 <a href="https://flustra.jagoankode.my.id/" class="block group">
                     <div class="glass-card group overflow-hidden reveal">
                         <div class="p-6">
-                            <h3 class="text-xl font-serif text-white mb-2">Flustra</h3>
+                            <h3 class="text-xl font-serif text-gray-900 dark:text-white mb-2">Flustra</h3>
                             <p class="text-sm text-gray-400">Platform SaaS keuangan terintegrasi dengan AI untuk OCR struk, pelacakan aset, dan perencanaan utang.</p>
                         </div>
                     </div>
@@ -160,8 +164,8 @@
                 <a href="https://dcktrp.jakarta.go.id/" class="block group">
                     <div class="glass-card group overflow-hidden reveal">
                         <div class="p-6">
-                            <h3 class="text-xl font-serif text-white mb-2">KLB Admin</h3>
-                            <p class="text-sm text-gray-400">Sistem enterprise pemerintah untuk proses permohonan pelampauan KLB dan manajemen kontribusi fasos/fasum.</p>
+                            <h3 class="text-xl font-serif text-gray-900 dark:text-white mb-2">KLB Admin</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Sistem enterprise pemerintah untuk proses permohonan pelampauan KLB dan manajemen kontribusi fasos/fasum.</p>
                         </div>
                     </div>
                 </a>                
@@ -170,8 +174,8 @@
                 <a href="#" class="block group">
                     <div class="glass-card group overflow-hidden reveal">
                         <div class="p-6">
-                            <h3 class="text-xl font-serif text-white mb-2">ERP Office</h3>
-                            <p class="text-sm text-gray-400">Sistem terintegrasi untuk mengotomatisasi keuangan, SDM, rantai pasok, dan inventaris bisnis.</p>
+                            <h3 class="text-xl font-serif text-gray-900 dark:text-white mb-2">ERP Office</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Sistem terintegrasi untuk mengotomatisasi keuangan, SDM, rantai pasok, dan inventaris bisnis.</p>
                         </div>
                     </div>
                 </a>
@@ -180,8 +184,8 @@
                 <a href="https://dcktrp.jakarta.go.id/" class="block group">
                     <div class="glass-card group overflow-hidden reveal">
                         <div class="p-6">
-                            <h3 class="text-xl font-serif text-white mb-2">RuangRapat</h3>
-                            <p class="text-sm text-gray-400">Portal reservasi ruang rapat dan kendaraan kantor terintegrasi.</p>
+                            <h3 class="text-xl font-serif text-gray-900 dark:text-white mb-2">RuangRapat</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Portal reservasi ruang rapat dan kendaraan kantor terintegrasi.</p>
                         </div>
                     </div>
                 </a>
@@ -190,8 +194,8 @@
                 <a href="https://posksrv2.jagoankode.my.id/" class="block group">
                     <div class="glass-card group overflow-hidden reveal">
                         <div class="p-6">
-                            <h3 class="text-xl font-serif text-white mb-2">Pos Kasir</h3>
-                            <p class="text-sm text-gray-400">Aplikasi kasir (POS) dan manajemen inventaris yang terintegrasi dengan asisten virtual berbasis AI.</p>
+                            <h3 class="text-xl font-serif text-gray-900 dark:text-white mb-2">Pos Kasir</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Aplikasi kasir (POS) dan manajemen inventaris yang terintegrasi dengan asisten virtual berbasis AI.</p>
                         </div>
                     </div>
                 </a>
@@ -200,8 +204,8 @@
                 <a href="#" class="block group">
                     <div class="glass-card group overflow-hidden reveal">
                         <div class="p-6">
-                            <h3 class="text-xl font-serif text-white mb-2">Dishub pengaduan</h3>
-                            <p class="text-sm text-gray-400">Sistem pelaporan pengaduan infrastruktur jalan masyarakat.</p>
+                            <h3 class="text-xl font-serif text-gray-900 dark:text-white mb-2">Dishub pengaduan</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Sistem pelaporan pengaduan infrastruktur jalan masyarakat.</p>
                         </div>
                     </div>
                 </a>
@@ -210,8 +214,8 @@
                 <a href="#" class="block group">
                     <div class="glass-card group overflow-hidden reveal">
                         <div class="p-6">
-                            <h3 class="text-xl font-serif text-white mb-2">Ticketing Portal</h3>
-                            <p class="text-sm text-gray-400">Portal operasional untuk manajemen tiket, kolaborasi tim, dan dasbor KPI performa real-time.</p>
+                            <h3 class="text-xl font-serif text-gray-900 dark:text-white mb-2">Ticketing Portal</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Portal operasional untuk manajemen tiket, kolaborasi tim, dan dasbor KPI performa real-time.</p>
                         </div>
                     </div>
                 </a>
@@ -220,8 +224,8 @@
                 <a href="#" class="block group">
                     <div class="glass-card group overflow-hidden reveal">
                         <div class="p-6">
-                            <h3 class="text-xl font-serif text-white mb-2">Web E-Commerce</h3>
-                            <p class="text-sm text-gray-400">Toko online produk game web dengan transaksi aman dan payment gateway.</p>
+                            <h3 class="text-xl font-serif text-gray-900 dark:text-white mb-2">Web E-Commerce</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Toko online produk game web dengan transaksi aman dan payment gateway.</p>
                         </div>
                     </div>
                 </a>
@@ -230,8 +234,8 @@
                 <a href="#" class="block group">
                     <div class="glass-card group overflow-hidden reveal">
                         <div class="p-6">
-                            <h3 class="text-xl font-serif text-white mb-2">Artikel Web</h3>
-                            <p class="text-sm text-gray-400">Platform publikasi artikel modern dengan sistem manajemen konten (CMS).</p>
+                            <h3 class="text-xl font-serif text-gray-900 dark:text-white mb-2">Artikel Web</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Platform publikasi artikel modern dengan sistem manajemen konten (CMS).</p>
                         </div>
                     </div>
                 </a>
@@ -243,24 +247,24 @@
     <section id="kontak" class="py-24 relative">
         <div class="max-w-3xl mx-auto px-6">
             <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Mari <span class="text-blue font-serif not-italic">Berkolaborasi</span></h2>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-4">Mari <span class="text-blue font-serif not-italic">Berkolaborasi</span></h2>
                 <div class="w-16 h-1 bg-blue mx-auto rounded-full"></div>
             </div>
 
             <form action="#" method="POST" class="glass-card p-8 md:p-12 reveal">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                        <label for="name" class="block text-gray-400 text-sm mb-2">Nama</label>
-                        <input type="text" id="name" name="name" required class="w-full bg-surface border border-surfaceBorder rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue transition">
+                        <label for="name" class="block text-gray-700 dark:text-gray-400 text-sm mb-2">Nama</label>
+                        <input type="text" id="name" name="name" required class="w-full bg-gray-100 dark:bg-surface border border-gray-300 dark:border-surfaceBorder rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-blue transition">
                     </div>
                     <div>
-                        <label for="email" class="block text-gray-400 text-sm mb-2">Email</label>
-                        <input type="email" id="email" name="email" required class="w-full bg-surface border border-surfaceBorder rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue transition">
+                        <label for="email" class="block text-gray-700 dark:text-gray-400 text-sm mb-2">Email</label>
+                        <input type="email" id="email" name="email" required class="w-full bg-gray-100 dark:bg-surface border border-gray-300 dark:border-surfaceBorder rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-blue transition">
                     </div>
                 </div>
                 <div class="mb-6">
-                    <label for="message" class="block text-gray-400 text-sm mb-2">Pesan</label>
-                    <textarea id="message" name="message" rows="5" required class="w-full bg-surface border border-surfaceBorder rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue transition"></textarea>
+                    <label for="message" class="block text-gray-700 dark:text-gray-400 text-sm mb-2">Pesan</label>
+                    <textarea id="message" name="message" rows="5" required class="w-full bg-gray-100 dark:bg-surface border border-gray-300 dark:border-surfaceBorder rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-blue transition"></textarea>
                 </div>
                 <button type="submit" class="w-full px-8 py-4 bg-blue text-darker font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,123,255,0.4)] transition duration-300">
                     Kirim Pesan
@@ -269,32 +273,32 @@
         </div>
     </section>
 
-    <footer class="border-t border-white/10 bg-darker pt-16 pb-8">
+    <footer class="border-t border-white/10 bg-blue pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center md:text-left">
             <div>
-                <a href="#" class="text-2xl font-serif font-bold text-white tracking-widest block mb-4">RYAN<span class="text-blue">.DEV</span></a>
-                <p class="text-gray-500 text-sm">Membangun solusi digital inovatif dengan desain modern dan logika pemrograman yang kuat.</p>
+                <a href="#" class="text-2xl font-serif font-bold text-white tracking-widest block mb-4">RYAN<span class="text-white">.DEV</span></a>
+                <p class="text-white/80 text-sm">Membangun solusi digital inovatif dengan desain modern dan logika pemrograman yang kuat.</p>
             </div>
             <div>
                 <h4 class="text-white font-medium mb-4">Navigasi</h4>
                 <ul class="space-y-2">
-                    <li><a href="#beranda" class="text-gray-400 hover:text-blue transition">Beranda</a></li>
-                    <li><a href="#tentang" class="text-gray-400 hover:text-blue transition">Tentang</a></li>
-                    <li><a href="#karya" class="text-gray-400 hover:text-blue transition">Karya</a></li>
+                    <li><a href="#beranda" class="text-white/80 hover:text-white transition">Beranda</a></li>
+                    <li><a href="#tentang" class="text-white/80 hover:text-white transition">Tentang</a></li>
+                    <li><a href="#karya" class="text-white/80 hover:text-white transition">Karya</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="text-white font-medium mb-4">Kontak</h4>
-                <p class="text-gray-400 text-sm">mryannrizki11@gmail.com</p>
+                <p class="text-white/80 text-sm">mryannrizki11@gmail.com</p>
                 <div class="flex gap-4 mt-4 justify-center md:justify-start">
-                    <a href="#" class="text-gray-400 hover:text-blue transition"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue transition"><i class="fab fa-github"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue transition"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-white/80 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white/80 hover:text-white transition"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-white/80 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
-        <div class="text-center pt-12 border-t border-white/5 mt-12">
-            <p class="text-gray-600 text-sm"> &copy; 2026 Muhamad Ryan Rizki. All rights reserved. </p>
+        <div class="text-center pt-12 border-t border-white/20 mt-12">
+            <p class="text-white/80 text-sm"> &copy; 2026 Muhamad Ryan Rizki. All rights reserved. </p>
         </div>
     </footer>
 

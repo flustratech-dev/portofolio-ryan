@@ -89,13 +89,8 @@
 
         // --- 4. Navbar Background on Scroll ---
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-darker/90', 'shadow-lg');
-            } else {
-                navbar.classList.remove('bg-darker/90', 'shadow-lg');
-            }
-        });
+        // Removed dynamic background on scroll logic
+        // window.addEventListener('scroll', () => { ... });
 
 
         // --- 5. Mobile Menu Toggle ---
@@ -191,6 +186,32 @@
             }
             requestAnimationFrame(animateParticles);
         }
+
+        // --- 7. Dark/Light Mode Toggle ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.theme = 'dark';
+            }
+        });
+
+        // Initialize theme from local storage
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
 
         initParticles();
         animateParticles();
