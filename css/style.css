@@ -64,7 +64,7 @@ body {
 
 .profile-img {
     width: 100%;
-    max-width: 800px;
+    max-width: 1100px;
     height: auto;
     object-fit: contain;
     /* Hapus background jika ada, atau gunakan CSS untuk masking */
