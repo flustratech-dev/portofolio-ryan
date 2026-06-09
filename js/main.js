@@ -130,8 +130,8 @@
                 this.size = Math.random() * 2;
                 this.speedX = Math.random() * 1 - 0.5;
                 this.speedY = Math.random() * 1 - 0.5;
-                // Subtle gold/white colors
-                this.color = Math.random() > 0.5 ? 'rgba(255, 255, 255, 0.2)' : 'rgba(212, 175, 55, 0.2)';
+                // Use a type string so we can resolve colors dynamically
+                this.type = Math.random() > 0.5 ? 'primary' : 'gold';
             }
 
             update() {
@@ -146,7 +146,12 @@
             }
 
             draw() {
-                ctx.fillStyle = this.color;
+                const isDark = document.documentElement.classList.contains('dark');
+                if (isDark) {
+                    ctx.fillStyle = this.type === 'primary' ? 'rgba(56, 189, 248, 0.35)' : 'rgba(99, 102, 241, 0.35)'; // Cyan & Indigo in dark mode
+                } else {
+                    ctx.fillStyle = this.type === 'primary' ? 'rgba(14, 165, 233, 0.3)' : 'rgba(29, 78, 216, 0.2)'; // Sky Blue & Deep Blue in light mode
+                }
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -163,6 +168,7 @@
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const isDark = document.documentElement.classList.contains('dark');
 
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
@@ -176,7 +182,11 @@
 
                     if (distance < 100) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(212, 175, 55, ${0.05 - distance/2000})`; // Fade out lines
+                        if (isDark) {
+                            ctx.strokeStyle = `rgba(56, 189, 248, ${0.08 - distance/1500})`; // Cyan lines in dark mode
+                        } else {
+                            ctx.strokeStyle = `rgba(14, 165, 233, ${0.12 - distance/1000})`; // Sky blue lines in light mode
+                        }
                         ctx.lineWidth = 0.5;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
