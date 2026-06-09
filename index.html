@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Muhamad Ryan Rizki</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#050505',
+                        darker: '#000000',
+                        blue: '#007BFF',
+                        blueLight: '#f3e5ab',
+                        surface: 'rgba(255, 255, 255, 0.03)',
+                        surfaceBorder: 'rgba(255, 255, 255, 0.08)'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- CSS -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="font-sans antialiased selection:bg-blue selection:text-darker">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <!-- Background Particles -->
+    <canvas id="canvas-bg"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 backdrop-blur-md border-b border-white/5" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-serif font-bold text-white tracking-widest">
+                RYAN<span class="text-blue">.DEV</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex flex-1 justify-center space-x-8 items-center">
+                <a href="#beranda" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition">Beranda</a>
+                <a href="#tentang" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition">Tentang</a>
+                <a href="#karya" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition">Karya</a>
+            </div>
+            <div class="hidden md:flex">
+                <a href="https://wa.me/6285774410978" target="_blank" class="px-5 py-2 text-sm font-medium border border-blue text-blue rounded-full hover:bg-blue hover:text-darker transition duration-300">Hubungi Saya</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-300 hover:text-white focus:outline-none" id="mobile-menu-btn">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="md:hidden hidden absolute w-full bg-darker/95 backdrop-blur-lg border-b border-white/10" id="mobile-menu">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <a href="#beranda" class="text-gray-300 hover:text-blue transition">Beranda</a>
+                <a href="#tentang" class="text-gray-300 hover:text-blue transition">Tentang</a>
+                <a href="#karya" class="text-gray-300 hover:text-blue transition">Karya</a>
+                <a href="#kontak" class="text-blue font-medium">Hubungi Saya</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="min-h-screen flex items-center relative pt-20 overflow-hidden">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <!-- Text Side -->
+            <div class="text-left reveal">
+                <p class="text-blue uppercase tracking-[0.3em] text-lg font-medium mb-2">Hai, saya</p>
+                <h1 class="text-5xl md:text-6xl font-serif font-bold text-white mb-6">
+                    Muhamad Ryan Rizki
+                </h1>
+
+                <div class="text-xl text-blue font-light mt-4 mb-8">
+                    Full Stack Developer | <span id="typing-text" class="text-blue font-medium typing-cursor"></span>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex gap-6 mt-4">
+                    <a href="#" class="text-gray-400 hover:text-blue transition"><i class="fab fa-instagram text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue transition"><i class="fab fa-twitter text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue transition"><i class="fab fa-linkedin-in text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue transition"><i class="fab fa-github text-2xl"></i></a>
+                </div>
+            </div>
+
+            <!-- Image Side -->
+            <div class="profile-wrapper reveal order-first md:order-last">
+                <img src="images/foto-profil.png" alt="Foto Profil" class="profile-img object-cover w-full max-w-xl mx-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Saya Section -->
+    <section id="tentang" class="py-24 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Tentang <span class="text-blue italic">Saya</span></h2>
+                <div class="w-16 h-1 bg-blue mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="reveal md:col-span-2 md:text-center max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-medium text-white mb-4">Mahasiswa & Full Stack Developer</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Halo! Saya Muhamad Ryan Rizki, seorang mahasiswa Teknologi Informasi di Telkom University. Sebagai Full Stack Developer, saya berfokus membangun solusi digital yang efisien, skalabel, dan user-friendly. Passion saya terletak pada pengembangan aplikasi web modern, di mana saya menggabungkan kreativitas desain dengan logika pemrograman yang kuat.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Selama perjalanan akademik dan proyek mandiri, saya telah mengasah kemampuan dalam berbagai teknologi mulai dari frontend hingga backend. Saya selalu tertantang untuk mempelajari hal baru, mengikuti tren industri terkini, dan mengimplementasikannya dalam proyek yang memberikan dampak positif bagi pengguna.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed mb-8">
+                        Tujuan utama saya adalah terus berkembang sebagai pengembang profesional yang mampu menciptakan solusi inovatif untuk masalah dunia nyata. Saya sangat terbuka untuk kolaborasi, diskusi proyek, atau sekadar bertukar ide mengenai pengembangan teknologi web. Mari membangun sesuatu yang luar biasa bersama!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="karya" class="py-24 bg-darker relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Karya <span class="text-blue italic">Terbaik</span></h2>
+                <div class="w-16 h-1 bg-blue mx-auto rounded-full mb-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1: OCR -->
+                <div class="glass-card group overflow-hidden reveal">
+                    <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop" alt="OCR" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-serif text-white">OCR Engine</h3>
+                        <p class="text-sm text-gray-400">Model AI untuk ekstraksi teks dari dokumen dan gambar dengan akurasi tinggi.</p>
+                    </div>
+                </div>
+
+                <!-- Project 2: LLM SaaS -->
+                <div class="glass-card group overflow-hidden reveal">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop" alt="LLM SaaS" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-serif text-white">LLM SaaS Platform</h3>
+                        <p class="text-sm text-gray-400">Platform layanan berbasis LLM untuk otomatisasi konten dan chatbot pintar.</p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-card group overflow-hidden reveal">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Proyek" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-serif text-white">Analytics Dashboard</h3>
+                        <p class="text-sm text-gray-400">Dasbor analitik data untuk visualisasi performa bisnis real-time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontak" class="py-24 relative">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Mari <span class="text-blue italic">Berkolaborasi</span></h2>
+                <div class="w-16 h-1 bg-blue mx-auto rounded-full"></div>
+            </div>
+
+            <form action="#" method="POST" class="glass-card p-8 md:p-12 reveal">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="name" class="block text-gray-400 text-sm mb-2">Nama</label>
+                        <input type="text" id="name" name="name" required class="w-full bg-surface border border-surfaceBorder rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue transition">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-400 text-sm mb-2">Email</label>
+                        <input type="email" id="email" name="email" required class="w-full bg-surface border border-surfaceBorder rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue transition">
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label for="message" class="block text-gray-400 text-sm mb-2">Pesan</label>
+                    <textarea id="message" name="message" rows="5" required class="w-full bg-surface border border-surfaceBorder rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue transition"></textarea>
+                </div>
+                <button type="submit" class="w-full px-8 py-4 bg-blue text-darker font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,123,255,0.4)] transition duration-300">
+                    Kirim Pesan
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-darker pt-12 pb-6 text-center">
+        <p class="text-gray-500 text-sm"> &copy; 2026 Muhamad Ryan Rizki. </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>
