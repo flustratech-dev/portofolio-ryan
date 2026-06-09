@@ -188,29 +188,33 @@
         }
 
         // --- 7. Dark/Light Mode Toggle ---
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
+        const themeToggleDesktop = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
 
-        themeToggle.addEventListener('click', () => {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
-                localStorage.theme = 'light';
-            } else {
-                document.documentElement.classList.add('dark');
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
-                localStorage.theme = 'dark';
-            }
-        });
-
-        // Initialize theme from local storage
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            themeIcon.classList.replace('fa-sun', 'fa-moon');
-        } else {
-            document.documentElement.classList.remove('dark');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        function updateThemeIcons(isDark) {
+            const icons = document.querySelectorAll('#theme-icon, #theme-icon-mobile');
+            icons.forEach(icon => {
+                if (isDark) {
+                    icon.classList.replace('fa-sun', 'fa-moon');
+                } else {
+                    icon.classList.replace('fa-moon', 'fa-sun');
+                }
+            });
         }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.theme = isDark ? 'dark' : 'light';
+            updateThemeIcons(isDark);
+        }
+
+        if (themeToggleDesktop) themeToggleDesktop.addEventListener('click', toggleTheme);
+        if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
+
+        // Initialize
+        const isDarkMode = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDarkMode) document.documentElement.classList.add('dark');
+        updateThemeIcons(isDarkMode);
 
 
         initParticles();
