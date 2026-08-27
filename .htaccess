@@ -1,0 +1,56 @@
+# ==========================================================
+# Muhamad Ryan Rizki — portfolio (static site on cPanel/Apache)
+# ==========================================================
+
+# ---- Force HTTPS ----
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ---- Default document ----
+DirectoryIndex index.html
+
+# ---- Don't expose the directory listing ----
+Options -Indexes
+
+# ---- Compression ----
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json image/svg+xml
+</IfModule>
+
+# ---- Browser caching ----
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Images and icons rarely change
+    ExpiresByType image/png                 "access plus 6 months"
+    ExpiresByType image/jpeg                "access plus 6 months"
+    ExpiresByType image/webp                "access plus 6 months"
+    ExpiresByType image/svg+xml             "access plus 6 months"
+    ExpiresByType image/x-icon              "access plus 6 months"
+
+    # Styles and scripts — shorter, so edits go live sooner
+    ExpiresByType text/css                  "access plus 7 days"
+    ExpiresByType application/javascript    "access plus 7 days"
+
+    # Always re-check the page itself
+    ExpiresByType text/html                 "access plus 0 seconds"
+</IfModule>
+
+# ---- Correct types ----
+<IfModule mod_mime.c>
+    AddType image/webp   .webp
+    AddType image/x-icon .ico
+</IfModule>
+
+# ---- Basic security headers ----
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always unset X-Powered-By
+</IfModule>

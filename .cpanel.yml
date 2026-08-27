@@ -1,0 +1,18 @@
+---
+deployment:
+  tasks:
+    # GANTI "USERNAME" dengan username cPanel-mu.
+    # Kalau situs ini dipasang di subdomain, arahkan ke foldernya, misalnya:
+    #   /home/USERNAME/ryansoftwareengineer.rzdigitalcreative.id/
+    - export DEPLOYPATH=/home/USERNAME/public_html/
+
+    - /bin/mkdir -p $DEPLOYPATH/css $DEPLOYPATH/js $DEPLOYPATH/images
+
+    - /bin/cp index.html   $DEPLOYPATH
+    - /bin/cp .htaccess    $DEPLOYPATH
+    - /bin/cp -R css/*     $DEPLOYPATH/css/
+    - /bin/cp -R js/*      $DEPLOYPATH/js/
+    - /bin/cp -R images/*  $DEPLOYPATH/images/
+
+    # Foto mentah tidak perlu ikut tayang
+    - /bin/rm -rf $DEPLOYPATH/images/originals
