@@ -1,18 +1,24 @@
 ---
 deployment:
   tasks:
-    # GANTI "USERNAME" dengan username cPanel-mu.
-    # Kalau situs ini dipasang di subdomain, arahkan ke foldernya, misalnya:
-    #   /home/USERNAME/ryansoftwareengineer.rzdigitalcreative.id/
-    - export DEPLOYPATH=/home/USERNAME/public_html/
+    # cPanel runs these as one shell, so $HOME and exported vars carry over.
+    # $HOME avoids hard-coding the cPanel username.
 
-    - /bin/mkdir -p $DEPLOYPATH/css $DEPLOYPATH/js $DEPLOYPATH/images
+    # Subdomains land in one of these two layouts depending on cPanel version.
+    - export DOCROOT="$HOME/ryansoftwareenginer.rzdigitalcreative.my.id"
+    - if [ ! -d "$DOCROOT" ]; then export DOCROOT="$HOME/public_html/ryansoftwareenginer"; fi
+    - if [ ! -d "$DOCROOT" ]; then export DOCROOT="$HOME/public_html"; fi
+    - echo "=== deploying to $DOCROOT ==="
 
-    - /bin/cp index.html   $DEPLOYPATH
-    - /bin/cp .htaccess    $DEPLOYPATH
-    - /bin/cp -R css/*     $DEPLOYPATH/css/
-    - /bin/cp -R js/*      $DEPLOYPATH/js/
-    - /bin/cp -R images/*  $DEPLOYPATH/images/
+    - /bin/mkdir -p "$DOCROOT/css" "$DOCROOT/js" "$DOCROOT/images"
 
-    # Foto mentah tidak perlu ikut tayang
-    - /bin/rm -rf $DEPLOYPATH/images/originals
+    - /bin/cp -f index.html "$DOCROOT/"
+    - /bin/cp -f .htaccess  "$DOCROOT/"
+    - /bin/cp -Rf css/.     "$DOCROOT/css/"
+    - /bin/cp -Rf js/.      "$DOCROOT/js/"
+    - /bin/cp -Rf images/.  "$DOCROOT/images/"
+
+    # Raw source photos should not be published
+    - /bin/rm -rf "$DOCROOT/images/originals"
+
+    - echo "=== deployed files ===" && ls -la "$DOCROOT"
