@@ -16,6 +16,25 @@ DirectoryIndex index.html
 # ---- Don't expose the directory listing ----
 Options -Indexes
 
+# ==========================================================
+# The document root is the git working copy itself, so the
+# repository metadata sits inside the web root. Block it, or
+# /.git/config is readable by anyone.
+# ACME challenge files are left reachable so AutoSSL can renew.
+# ==========================================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^\.git(/|$)   - [F,L]
+    RewriteRule ^\.gitignore$ - [F,L]
+    RewriteRule ^\.cpanel\.yml$ - [F,L]
+    RewriteRule ^CNAME$       - [F,L]
+    RewriteRule ^README(\.md)?$ - [F,L]
+</IfModule>
+
+<FilesMatch "^\.(git|gitignore|gitattributes|cpanel\.yml|htaccess|env)">
+    Require all denied
+</FilesMatch>
+
 # ---- Compression ----
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript
