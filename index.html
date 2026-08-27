@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio | Muhamad Ryan Rizki</title>
+    <meta name="description" content="Portofolio Muhamad Ryan Rizki — Full Stack Developer & UI/UX Designer, mahasiswa Teknologi Informasi Telkom University.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" sizes="any" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <meta name="theme-color" content="#C98038">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,26 +18,28 @@
     <!-- FontAwesome for Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts: Cabinet Grotesk (display) + Inter Tight (body) -->
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        dark: '#050505',
-                        darker: '#000000',
-                        blue: '#007BFF',
-                        blueLight: '#f3e5ab',
-                        surface: 'rgba(255, 255, 255, 0.03)',
-                        surfaceBorder: 'rgba(255, 255, 255, 0.08)'
+                        ink: '#212B3A',
+                        muted: '#344052',
+                        mist: '#A2AFBE',
+                        paper: '#EDF0F3',
+                        accent: '#C98038',
+                        surface: 'rgba(237, 240, 243, 0.55)',
+                        surfaceBorder: 'rgba(33, 43, 58, 0.18)'
                     },
                     fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter Tight', 'system-ui', 'sans-serif'],
+                        display: ['Cabinet Grotesk', 'Inter Tight', 'system-ui', 'sans-serif'],
+                        mono: ['ui-monospace', 'SF Mono', 'Cascadia Mono', 'Menlo', 'monospace'],
                     }
                 }
             }
@@ -40,523 +49,735 @@
     <!-- CSS -->
     <link href="css/style.css" rel="stylesheet">
 </head>
-<body class="font-sans antialiased selection:bg-blue selection:text-white bg-gray-50 dark:bg-dark dark:selection:bg-blue dark:selection:text-white">
+<body class="font-sans antialiased bg-mist text-ink selection:bg-accent selection:text-paper">
+
+    <!-- Scroll Progress -->
+    <div id="scroll-progress"></div>
 
     <!-- Custom Cursor -->
     <div class="cursor-dot" id="cursor-dot"></div>
     <div class="cursor-outline" id="cursor-outline"></div>
 
-    <!-- Background Particles -->
-    <canvas id="canvas-bg"></canvas>
-
     <!-- Navigation -->
     <nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-transparent" id="navbar">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-serif font-bold text-gray-900 dark:text-white tracking-widest">
-                RYAN<span class="text-blue">.DEV</span>
+            <a href="#" class="text-2xl font-display font-bold text-ink tracking-widest drop-shadow-lg">
+                RYAN<span class="text-accent">.DEV</span>
             </a>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex flex-1 justify-center space-x-8 items-center">
-                <a href="#beranda" class="nav-link text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Beranda</a>
-                <a href="#tentang" class="nav-link text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Tentang</a>
-                <a href="#karya" class="nav-link text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition">Karya</a>
+                <a href="#beranda" class="nav-link text-sm font-medium text-muted hover:text-ink transition">Beranda</a>
+                <a href="#tentang" class="nav-link text-sm font-medium text-muted hover:text-ink transition">Tentang</a>
+                <a href="#karya" class="nav-link text-sm font-medium text-muted hover:text-ink transition">Karya</a>
             </div>
             <div class="hidden md:flex">
-                <button id="theme-toggle" class="mr-4 p-2 rounded-full hover:bg-gray-800 transition">
-                    <i id="theme-icon" class="fas fa-sun text-gray-300"></i>
-                </button>
-                <a href="https://wa.me/6285774410978" target="_blank" class="px-5 py-2 text-sm font-medium border border-blue text-blue rounded-full hover:bg-blue hover:text-darker transition duration-300">Hubungi Saya</a>
+                <a href="https://wa.me/6285774410978" target="_blank" class="px-5 py-2 text-sm font-medium border border-accent text-accent rounded-full hover:bg-accent hover:text-paper transition duration-300">Hubungi Saya</a>
             </div>
 
             <!-- Mobile Menu Button -->
             <div class="flex items-center gap-2 md:hidden">
-                <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-gray-800 transition">
-                    <i id="theme-icon-mobile" class="fas fa-sun text-gray-300"></i>
-                </button>
-                <button class="text-gray-300 hover:text-white focus:outline-none" id="mobile-menu-btn">
+                <button class="text-muted hover:text-ink focus:outline-none" id="mobile-menu-btn">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu (Hidden by default) -->
-        <div class="md:hidden hidden absolute w-full bg-white dark:bg-darker/95 backdrop-blur-lg border-b border-gray-200 dark:border-white/10" id="mobile-menu">
+        <div class="md:hidden hidden absolute w-full bg-paper/95 backdrop-blur-lg border-b border-ink/15" id="mobile-menu">
             <div class="flex flex-col px-6 py-4 space-y-4">
-                <a href="#beranda" class="text-gray-700 dark:text-gray-300 hover:text-blue transition">Beranda</a>
-                <a href="#tentang" class="text-gray-700 dark:text-gray-300 hover:text-blue transition">Tentang</a>
-                <a href="#karya" class="text-gray-700 dark:text-gray-300 hover:text-blue transition">Karya</a>
-                <a href="#kontak" class="text-blue font-medium">Hubungi Saya</a>
+                <a href="#beranda" class="text-muted hover:text-accent transition">Beranda</a>
+                <a href="#tentang" class="text-muted hover:text-accent transition">Tentang</a>
+                <a href="#karya" class="text-muted hover:text-accent transition">Karya</a>
+                <a href="#kontak" class="text-accent font-medium">Hubungi Saya</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="beranda" class="min-h-screen flex items-center relative pt-20 overflow-hidden">
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <!-- Text Side -->
-            <div class="text-left animate-slide-left">
-                <p class="text-blue uppercase tracking-[0.3em] text-lg font-medium mb-2">Hai, saya</p>
-                <h1 class="text-5xl md:text-6xl font-serif font-bold text-gray-900 dark:text-white mb-6">
-                    Muhamad Ryan Rizki
-                </h1>
 
-                <div class="text-xl text-blue font-light mt-4 mb-8">
-                    Full Stack Developer | <span id="typing-text" class="text-blue font-medium typing-cursor"></span>
+    <!-- =========================================================
+         CINEMATIC SCROLL-SCRUB
+         ========================================================= -->
+    <section class="scroll-scrub" id="beranda">
+
+        <!-- Pinned stage -->
+        <div class="scroll-scrub__stage">
+            <div class="scroll-scrub__media">
+
+                <!-- Scene 1 — Intro -->
+                <figure class="scroll-scrub__layer">
+                    <div class="scene-inner">
+                        <div class="scene scene--aurora"></div>
+                    </div>
+                </figure>
+
+                <!-- Scene 2 — Tentang -->
+                <figure class="scroll-scrub__layer">
+                    <div class="scene-inner">
+                        <div class="scene scene--code" id="scene-code"></div>
+                    </div>
+                </figure>
+
+                <!-- Scene 3 — Keahlian -->
+                <figure class="scroll-scrub__layer">
+                    <div class="scene-inner">
+                        <div class="scene scene--grid"></div>
+                    </div>
+                </figure>
+
+                <!-- Scene 4 — Stack -->
+                <figure class="scroll-scrub__layer">
+                    <div class="scene-inner">
+                        <div class="scene scene--mosaic">
+                            <span class="blob" style="width:420px;height:420px;top:8%;left:6%;background:#C98038;"></span>
+                            <span class="blob" style="width:380px;height:380px;bottom:6%;right:10%;background:#7C8CA0;animation-delay:-6s;"></span>
+                            <span class="blob" style="width:300px;height:300px;top:38%;left:46%;background:#E4D6C4;animation-delay:-11s;"></span>
+                        </div>
+                    </div>
+                </figure>
+
+                <!-- Scene 5 — Karya -->
+                <figure class="scroll-scrub__layer">
+                    <div class="scene-inner">
+                        <div class="scene scene--mosaic">
+                            <span class="blob" style="width:460px;height:460px;top:14%;right:8%;background:#B08A5E;"></span>
+                            <span class="blob" style="width:340px;height:340px;bottom:12%;left:8%;background:#6B7C92;animation-delay:-8s;"></span>
+                            <span class="blob" style="width:260px;height:260px;top:52%;left:40%;background:#D9C3A5;animation-delay:-14s;"></span>
+                        </div>
+                    </div>
+                </figure>
+
+                <!-- Scene 6 — Kontak -->
+                <figure class="scroll-scrub__layer">
+                    <div class="scene-inner">
+                        <div class="scene scene--horizon"></div>
+                    </div>
+                </figure>
+
+                <div class="scroll-scrub__vignette"></div>
+
+                <!-- Living portrait — persists across every chapter and glides
+                     left/right on scroll, opposite the text block -->
+                <div class="portrait" id="portrait">
+                    <div class="portrait__backlight"></div>
+                    <div class="portrait__inner">
+                        <!-- One set per chapter; they cross-fade on the same
+                             curve as the scenes behind them. --set-scale tames
+                             the close-up crops so every shot reads at one size. -->
+                        <div class="portrait__set" style="--set-scale: 0.7">
+                            <img src="images/foto-profil.png" alt="Muhamad Ryan Rizki" class="portrait__img portrait__img--depth">
+                            <img src="images/foto-profil.png" alt="" aria-hidden="true" class="portrait__img portrait__img--base">
+                            <img src="images/foto-profil.png" alt="" aria-hidden="true" class="portrait__img portrait__img--sweep">
+                        </div>
+                        <div class="portrait__set" style="--set-scale: 0.58">
+                            <img src="images/foto-1.png" alt="" aria-hidden="true" class="portrait__img portrait__img--depth">
+                            <img src="images/foto-1.png" alt="" aria-hidden="true" class="portrait__img portrait__img--base">
+                            <img src="images/foto-1.png" alt="" aria-hidden="true" class="portrait__img portrait__img--sweep">
+                        </div>
+                        <div class="portrait__set">
+                            <img src="images/foto-2.png" alt="" aria-hidden="true" class="portrait__img portrait__img--depth">
+                            <img src="images/foto-2.png" alt="" aria-hidden="true" class="portrait__img portrait__img--base">
+                            <img src="images/foto-2.png" alt="" aria-hidden="true" class="portrait__img portrait__img--sweep">
+                        </div>
+                        <div class="portrait__set" style="--set-scale: 0.84">
+                            <img src="images/foto-3.png" alt="" aria-hidden="true" class="portrait__img portrait__img--depth">
+                            <img src="images/foto-3.png" alt="" aria-hidden="true" class="portrait__img portrait__img--base">
+                            <img src="images/foto-3.png" alt="" aria-hidden="true" class="portrait__img portrait__img--sweep">
+                        </div>
+                        <div class="portrait__set" style="--set-scale: 0.7">
+                            <img src="images/foto-profil.png" alt="" aria-hidden="true" class="portrait__img portrait__img--depth">
+                            <img src="images/foto-profil.png" alt="" aria-hidden="true" class="portrait__img portrait__img--base">
+                            <img src="images/foto-profil.png" alt="" aria-hidden="true" class="portrait__img portrait__img--sweep">
+                        </div>
+                        <div class="portrait__set">
+                            <img src="images/foto-2.png" alt="" aria-hidden="true" class="portrait__img portrait__img--depth">
+                            <img src="images/foto-2.png" alt="" aria-hidden="true" class="portrait__img portrait__img--base">
+                            <img src="images/foto-2.png" alt="" aria-hidden="true" class="portrait__img portrait__img--sweep">
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Social Links -->
-                <div class="flex gap-6 mt-4">
-                    <a href="#" class="text-gray-400 hover:text-blue transition"><i class="fab fa-instagram text-2xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue transition"><i class="fab fa-twitter text-2xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue transition"><i class="fab fa-linkedin-in text-2xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue transition"><i class="fab fa-github text-2xl"></i></a>
-                </div>
+                <div class="scroll-scrub__grain"></div>
             </div>
 
-            <!-- Image Side -->
-            <div class="profile-wrapper animate-slide-right order-first md:order-last">
-                <img src="images/foto-profil.png" alt="Foto Profil" class="profile-img object-cover w-full max-w-none mx-auto">
+            <!-- Chapter nav -->
+            <nav class="scroll-scrub__route" id="ss-route">
+                <button class="scroll-scrub__route-button" data-idx="0">Intro</button>
+                <button class="scroll-scrub__route-button" data-idx="1">Tentang</button>
+                <button class="scroll-scrub__route-button" data-idx="2">Keahlian</button>
+                <button class="scroll-scrub__route-button" data-idx="3">Stack</button>
+                <button class="scroll-scrub__route-button" data-idx="4">Karya</button>
+                <button class="scroll-scrub__route-button" data-idx="5">Kontak</button>
+            </nav>
+
+            <!-- Scroll hint -->
+            <div class="scroll-hint" id="scroll-hint">
+                <span class="mouse"></span>
+                Scroll
             </div>
+
+            <!-- Progress -->
+            <div class="scroll-scrub__progress"><span></span></div>
+        </div>
+
+        <!-- Story chapters -->
+        <div class="scroll-scrub__story">
+
+            <!-- Chapter 1 — Intro -->
+            <article class="scroll-scrub__chapter">
+                <div class="scroll-scrub__chapter-pin">
+                    <div class="scroll-scrub__copy">
+                        <span class="scroll-scrub__eyebrow">Full Stack Developer · Telkom University</span>
+                        <h1 class="scroll-scrub__title">Muhamad <em>Ryan Rizki</em></h1>
+                        <p class="scroll-scrub__body">
+                            Mahasiswa Teknologi Informasi yang membangun aplikasi web
+                            andal secara sistem sekaligus memikat secara visual.
+                        </p>
+                        <div class="strip">
+                            <span class="strip__chip">Full Stack Developer</span>
+                            <span class="strip__chip">UI/UX Designer</span>
+                            <span class="strip__chip">Digital Creator</span>
+                        </div>
+                        <p class="frame-meta">Chapter 01 · Intro · <span class="live">Tersedia untuk proyek</span></p>
+                        <span class="callout callout--p1">Laravel · React ✓</span>
+                        <span class="callout callout--p2">9+ proyek selesai</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Chapter 2 — Tentang -->
+            <article class="scroll-scrub__chapter">
+                <div class="scroll-scrub__chapter-pin">
+                    <div class="scroll-scrub__copy">
+                        <span class="scroll-scrub__eyebrow">Profil &amp; Visi</span>
+                        <h2 class="scroll-scrub__title">Tentang <em>Saya</em></h2>
+                        <p class="scroll-scrub__body">
+                            Halo! Saya Muhamad Ryan Rizki, mahasiswa Teknologi Informasi di Telkom University
+                            dengan passion kuat pada pengembangan web modern dan perancangan UI/UX. Berbekal
+                            keahlian teknis dan desain, saya berfokus membangun aplikasi web yang andal secara
+                            sistem sekaligus memikat secara visual.
+                        </p>
+                        <dl class="cv">
+                            <div>
+                                <dt>Pendidikan</dt>
+                                <dd>Teknologi Informasi · Telkom University</dd>
+                            </div>
+                            <div>
+                                <dt>Fokus</dt>
+                                <dd>Web modern &amp; perancangan UI/UX</dd>
+                            </div>
+                            <div>
+                                <dt>Pendekatan</dt>
+                                <dd>Adaptif, suka belajar, kolaboratif</dd>
+                            </div>
+                        </dl>
+                        <p class="frame-meta">Chapter 02 · Profil &amp; Visi</p>
+                        <span class="callout callout--p1">Sistem andal ✓</span>
+                        <span class="callout callout--p2">Visual memikat ✓</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Chapter 3 — Keahlian -->
+            <article class="scroll-scrub__chapter">
+                <div class="scroll-scrub__chapter-pin">
+                    <div class="scroll-scrub__copy">
+                        <span class="scroll-scrub__eyebrow">Fokus &amp; Keahlian</span>
+                        <h2 class="scroll-scrub__title">Apa yang saya <em>kerjakan</em></h2>
+                        <p class="scroll-scrub__body">
+                            Lima hal yang menjadi inti cara saya membangun produk digital — dari logika
+                            sistem sampai detail antarmuka.
+                        </p>
+                        <dl class="cv">
+                            <div>
+                                <dt>Pengembangan Web Modern</dt>
+                                <dd>Aplikasi web fungsional, aman, dan berkinerja tinggi.</dd>
+                            </div>
+                            <div>
+                                <dt>Desain Antarmuka Intuitif</dt>
+                                <dd>Visual estetis dan mudah dinavigasi pengguna.</dd>
+                            </div>
+                            <div>
+                                <dt>Pembuatan Konten Digital</dt>
+                                <dd>Materi kreatif pendukung identitas produk.</dd>
+                            </div>
+                            <div>
+                                <dt>Sinergi Teknis &amp; Desain</dt>
+                                <dd>Mengharmoniskan logika sistem dengan estetika visual.</dd>
+                            </div>
+                            <div>
+                                <dt>Kolaborasi Inovatif</dt>
+                                <dd>Bekerja lintas disiplin untuk visi proyek digital.</dd>
+                            </div>
+                        </dl>
+                        <p class="frame-meta">Chapter 03 · Keahlian Utama</p>
+                        <span class="callout callout--p1">UI/UX + Engineering</span>
+                        <span class="callout callout--p2">Detail-oriented ✓</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Chapter 4 — Stack -->
+            <article class="scroll-scrub__chapter">
+                <div class="scroll-scrub__chapter-pin">
+                    <div class="scroll-scrub__copy">
+                        <span class="scroll-scrub__eyebrow">Tech Stack</span>
+                        <h2 class="scroll-scrub__title">Alat yang saya <em>pakai</em></h2>
+                        <p class="scroll-scrub__body">
+                            Dari backend Laravel sampai antarmuka Tailwind — teknologi yang saya
+                            gunakan setiap hari untuk mengirimkan produk.
+                        </p>
+                        <div class="strip">
+                            <span class="strip__chip"><i class="fab fa-laravel"></i> Laravel</span>
+                            <span class="strip__chip"><i class="fab fa-php"></i> PHP</span>
+                            <span class="strip__chip"><i class="fab fa-js"></i> JavaScript</span>
+                            <span class="strip__chip"><i class="fab fa-react"></i> React</span>
+                            <span class="strip__chip"><i class="fab fa-node-js"></i> Node.js</span>
+                            <span class="strip__chip"><i class="fas fa-wind"></i> Tailwind</span>
+                            <span class="strip__chip"><i class="fas fa-database"></i> MySQL</span>
+                            <span class="strip__chip"><i class="fab fa-bootstrap"></i> Bootstrap</span>
+                            <span class="strip__chip"><i class="fas fa-mobile-screen"></i> Flutter</span>
+                            <span class="strip__chip"><i class="fas fa-bolt"></i> Livewire</span>
+                            <span class="strip__chip"><i class="fas fa-brain"></i> AI / OCR</span>
+                            <span class="strip__chip"><i class="fab fa-git-alt"></i> Git</span>
+                        </div>
+                        <p class="frame-meta">Chapter 04 · 12+ teknologi dikuasai</p>
+                        <span class="callout callout--p1">Backend + Frontend</span>
+                        <span class="callout callout--p2">Mobile ready ✓</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Chapter 5 — Karya -->
+            <article class="scroll-scrub__chapter">
+                <div class="scroll-scrub__chapter-pin">
+                    <div class="scroll-scrub__copy">
+                        <span class="scroll-scrub__eyebrow">Karya Terbaik</span>
+                        <h2 class="scroll-scrub__title">Yang sudah saya <em>bangun</em></h2>
+                        <p class="scroll-scrub__body">
+                            Sembilan proyek: dari SaaS keuangan berbasis AI, sistem enterprise pemerintah,
+                            sampai aplikasi mobile pelaporan masyarakat.
+                        </p>
+                        <dl class="cv">
+                            <div>
+                                <dt>Flustra</dt>
+                                <dd>SaaS keuangan dengan AI OCR struk &amp; pelacakan aset.</dd>
+                            </div>
+                            <div>
+                                <dt>KLB Admin</dt>
+                                <dd>Sistem enterprise pemerintah DKI Jakarta.</dd>
+                            </div>
+                            <div>
+                                <dt>Pos Kasir</dt>
+                                <dd>POS &amp; inventaris dengan asisten virtual AI.</dd>
+                            </div>
+                        </dl>
+                        <a href="#karya" class="ss-btn ss-btn--solid">Lihat Semua Karya <i class="fas fa-arrow-down"></i></a>
+                        <p class="frame-meta mt-5">Chapter 05 · 9 proyek terdokumentasi</p>
+                        <span class="callout callout--p1">Enterprise grade ✓</span>
+                        <span class="callout callout--p2">AI powered</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Chapter 6 — Kontak -->
+            <article class="scroll-scrub__chapter">
+                <div class="scroll-scrub__chapter-pin">
+                    <div class="scroll-scrub__copy">
+                        <span class="scroll-scrub__eyebrow">Mari Berkolaborasi</span>
+                        <h2 class="scroll-scrub__title">Proyek Anda <em>berikutnya</em></h2>
+                        <p class="scroll-scrub__body">
+                            Terbuka untuk kolaborasi, freelance, dan peluang magang. Mari bangun
+                            sesuatu yang inovatif dan berdampak nyata bersama.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-6">
+                            <a href="https://wa.me/6285774410978" target="_blank" class="ss-btn ss-btn--solid"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a href="mailto:mryannrizki11@gmail.com" class="ss-btn ss-btn--ghost"><i class="fas fa-envelope"></i> Email</a>
+                        </div>
+                        <p class="frame-meta">Chapter 06 · <span class="live">Siap dihubungi</span></p>
+                        <span class="callout callout--p1">Fokus: Anda ✓</span>
+                        <span class="callout callout--p2">Response &lt; 24 jam</span>
+                    </div>
+                </div>
+            </article>
+
         </div>
     </section>
 
-    <!-- Tentang Saya Section -->
-    <section id="tentang" class="py-24 relative">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-4">Tentang <span class="text-blue font-serif not-italic">Saya</span></h2>
-                <div class="w-16 h-1 bg-blue mx-auto rounded-full mb-6"></div>
-                <div class="flex flex-wrap gap-2 justify-center">
-                    <span class="px-3 py-1 bg-blue/10 text-blue text-sm rounded-full">Full Stack Developer</span>
-                    <span class="px-3 py-1 bg-blue/10 text-blue text-sm rounded-full">UI/UX Designer</span>
-                    <span class="px-3 py-1 bg-blue/10 text-blue text-sm rounded-full">Digital Creator</span>
-                </div>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-                <!-- Left Column: Profil -->
-                <div class="reveal text-left flex flex-col justify-center py-2">
-                    <h3 class="text-xl md:text-2xl font-serif font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
-                        <span class="w-1.5 h-6 bg-blue rounded-full"></span>
-                        Profil & Visi
-                    </h3>
-                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-justify text-base">
-                        Halo! Saya Muhamad Ryan Rizki, mahasiswa Teknologi Informasi di Telkom University dengan passion kuat pada pengembangan web modern dan perancangan UI/UX. Berbekal keahlian teknis dan desain, saya berfokus membangun aplikasi web yang andal secara sistem sekaligus memikat secara visual. Saya selalu adaptif, suka belajar hal baru, dan antusias untuk berkolaborasi menciptakan produk digital yang inovatif dan berdampak nyata.
-                    </p>
-                </div>
+    <!-- =========================================================
+         DETAIL SECTIONS
+         ========================================================= -->
+    <div class="section-shell">
 
-                <!-- Right Column: Fokus dan Keahlian Utama -->
-                <div class="reveal text-left py-2">
-                    <h3 class="text-xl md:text-2xl font-serif font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
-                        <span class="w-1.5 h-6 bg-blue rounded-full"></span>
-                        Fokus & Keahlian
-                    </h3>
+        <!-- Background Particles -->
+        <canvas id="canvas-bg"></canvas>
 
-                    <div class="space-y-6">
-                        <!-- Item 1 -->
-                        <div>
-                            <h4 class="font-serif font-bold text-lg md:text-xl text-gray-900 dark:text-white mb-1">Pengembangan Web Modern</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                Membangun aplikasi web fungsional, aman, dan berkinerja tinggi.
-                            </p>
-                        </div>
-
-                        <!-- Item 2 -->
-                        <div>
-                            <h4 class="font-serif font-bold text-lg md:text-xl text-gray-900 dark:text-white mb-1">Desain Antarmuka Intuitif</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                Merancang visual yang estetis dan mudah dinavigasi pengguna.
-                            </p>
-                        </div>
-
-                        <!-- Item 3 -->
-                        <div>
-                            <h4 class="font-serif font-bold text-lg md:text-xl text-gray-900 dark:text-white mb-1">Pembuatan Konten Digital</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                Menghasilkan materi kreatif pendukung identitas produk.
-                            </p>
-                        </div>
-
-                        <!-- Item 4 -->
-                        <div>
-                            <h4 class="font-serif font-bold text-lg md:text-xl text-gray-900 dark:text-white mb-1">Sinergi Teknis & Desain</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                Mengharmoniskan logika sistem dengan estetika visual.
-                            </p>
-                        </div>
-
-                        <!-- Item 5 -->
-                        <div>
-                            <h4 class="font-serif font-bold text-lg md:text-xl text-gray-900 dark:text-white mb-1">Kolaborasi Inovatif</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                Bekerja sama aktif lintas disiplin untuk visi proyek digital.
-                            </p>
-                        </div>
+        <!-- Stats -->
+        <section class="py-20 relative" id="tentang">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="glass-card grid grid-cols-2 md:grid-cols-4 gap-6 p-8 reveal">
+                    <div class="text-center">
+                        <div class="stat-value text-4xl md:text-5xl" data-count="9" data-suffix="+">0</div>
+                        <p class="text-sm text-muted mt-2">Proyek Selesai</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="stat-value text-4xl md:text-5xl" data-count="3" data-suffix="+">0</div>
+                        <p class="text-sm text-muted mt-2">Tahun Pengalaman</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="stat-value text-4xl md:text-5xl" data-count="12" data-suffix="+">0</div>
+                        <p class="text-sm text-muted mt-2">Teknologi Dikuasai</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="stat-value text-4xl md:text-5xl" data-count="100" data-suffix="%">0</div>
+                        <p class="text-sm text-muted mt-2">Dedikasi</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Portfolio Section -->
-    <section id="karya" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-4">Karya <span class="text-blue font-serif not-italic">Terbaik</span></h2>
-                <div class="w-16 h-1 bg-blue mx-auto rounded-full mb-6"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- 2. Flustra -->
-                <a href="https://flustra.jagoankode.my.id/" class="block group h-full">
-                    <div class="glass-card group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="min-height: 190px;">
-                        <!-- Glow effect -->
-                        <div class="absolute -top-10 -left-10 w-20 h-20 bg-blue/5 group-hover:bg-blue/15 transition-all duration-500 rounded-full blur-xl"></div>
-                        
-                        <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-9 h-9 rounded-lg bg-blue/10 flex items-center justify-center text-blue text-base group-hover:scale-110 group-hover:bg-blue/20 transition-all duration-300 shrink-0">
-                                    <i class="fas fa-chart-line"></i>
-                                </div>
-                                <h3 class="text-base font-serif font-bold text-gray-900 dark:text-white group-hover:text-blue transition-colors duration-300">Flustra</h3>
-                            </div>
-                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Platform SaaS keuangan terintegrasi dengan AI untuk OCR struk, pelacakan aset, dan perencanaan utang.</p>
-                        </div>
-
-                        <div>
-                            <!-- Tags -->
-                            <div class="flex flex-wrap gap-1 mb-3">
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Laravel</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">AI (OCR)</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Tailwind</span>
-                            </div>
-
-                            <!-- Link Indicator -->
-                            <div class="text-[11px] font-semibold text-blue flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
-                                Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 1. KLB Admin -->
-                <a href="https://dcktrp.jakarta.go.id/" class="block group h-full">
-                    <div class="glass-card group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="transition-delay: 150ms; min-height: 190px;">
-                        <!-- Glow effect -->
-                        <div class="absolute -top-10 -left-10 w-20 h-20 bg-blue/5 group-hover:bg-blue/15 transition-all duration-500 rounded-full blur-xl"></div>
-                        
-                        <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-9 h-9 rounded-lg bg-blue/10 flex items-center justify-center text-blue text-base group-hover:scale-110 group-hover:bg-blue/20 transition-all duration-300 shrink-0">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <h3 class="text-base font-serif font-bold text-gray-900 dark:text-white group-hover:text-blue transition-colors duration-300">KLB Admin</h3>
-                            </div>
-                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Sistem enterprise pemerintah untuk proses permohonan pelampauan KLB dan manajemen kontribusi fasos/fasum.</p>
-                        </div>
-
-                        <div>
-                            <!-- Tags -->
-                            <div class="flex flex-wrap gap-1 mb-3">
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Laravel</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Bootstrap</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Enterprise</span>
-                            </div>
-
-                            <!-- Link Indicator -->
-                            <div class="text-[11px] font-semibold text-blue flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
-                                Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
-                            </div>
-                        </div>
-                    </div>
-                </a>                
-
-                <!-- 7. ERP Office -->
-                <a href="#" class="block group h-full">
-                    <div class="glass-card group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="transition-delay: 300ms; min-height: 190px;">
-                        <!-- Glow effect -->
-                        <div class="absolute -top-10 -left-10 w-20 h-20 bg-blue/5 group-hover:bg-blue/15 transition-all duration-500 rounded-full blur-xl"></div>
-                        
-                        <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-9 h-9 rounded-lg bg-blue/10 flex items-center justify-center text-blue text-base group-hover:scale-110 group-hover:bg-blue/20 transition-all duration-300 shrink-0">
-                                    <i class="fas fa-briefcase"></i>
-                                </div>
-                                <h3 class="text-base font-serif font-bold text-gray-900 dark:text-white group-hover:text-blue transition-colors duration-300">ERP Office</h3>
-                            </div>
-                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Sistem terintegrasi untuk mengotomatisasi keuangan, SDM, rantai pasok, dan inventaris bisnis.</p>
-                        </div>
-
-                        <div>
-                            <!-- Tags -->
-                            <div class="flex flex-wrap gap-1 mb-3">
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Laravel</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">MySQL</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Tailwind</span>
-                            </div>
-
-                            <!-- Link Indicator -->
-                            <div class="text-[11px] font-semibold text-blue flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
-                                Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 4. RuangRapat -->
-                <a href="https://dcktrp.jakarta.go.id/" class="block group h-full">
-                    <div class="glass-card group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="min-height: 190px;">
-                        <!-- Glow effect -->
-                        <div class="absolute -top-10 -left-10 w-20 h-20 bg-blue/5 group-hover:bg-blue/15 transition-all duration-500 rounded-full blur-xl"></div>
-                        
-                        <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-9 h-9 rounded-lg bg-blue/10 flex items-center justify-center text-blue text-base group-hover:scale-110 group-hover:bg-blue/20 transition-all duration-300 shrink-0">
-                                    <i class="fas fa-calendar-check"></i>
-                                </div>
-                                <h3 class="text-base font-serif font-bold text-gray-900 dark:text-white group-hover:text-blue transition-colors duration-300">RuangRapat</h3>
-                            </div>
-                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Portal reservasi ruang rapat dan kendaraan kantor terintegrasi secara real-time.</p>
-                        </div>
-
-                        <div>
-                            <!-- Tags -->
-                            <div class="flex flex-wrap gap-1 mb-3">
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">PHP</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">MySQL</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Tailwind</span>
-                            </div>
-
-                            <!-- Link Indicator -->
-                            <div class="text-[11px] font-semibold text-blue flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
-                                Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 5. Warung RZ -->
-                <a href="https://posksrv2.jagoankode.my.id/" class="block group h-full">
-                    <div class="glass-card group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="transition-delay: 150ms; min-height: 190px;">
-                        <!-- Glow effect -->
-                        <div class="absolute -top-10 -left-10 w-20 h-20 bg-blue/5 group-hover:bg-blue/15 transition-all duration-500 rounded-full blur-xl"></div>
-                        
-                        <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-9 h-9 rounded-lg bg-blue/10 flex items-center justify-center text-blue text-base group-hover:scale-110 group-hover:bg-blue/20 transition-all duration-300 shrink-0">
-                                    <i class="fas fa-cash-register"></i>
-                                </div>
-                                <h3 class="text-base font-serif font-bold text-gray-900 dark:text-white group-hover:text-blue transition-colors duration-300">Pos Kasir</h3>
-                            </div>
-                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Aplikasi kasir (POS) dan manajemen inventaris yang terintegrasi dengan asisten virtual berbasis AI.</p>
-                        </div>
-
-                        <div>
-                            <!-- Tags -->
-                            <div class="flex flex-wrap gap-1 mb-3">
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Laravel</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">AI Assistant</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Tailwind</span>
-                            </div>
-
-                            <!-- Link Indicator -->
-                            <div class="text-[11px] font-semibold text-blue flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
-                                Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 6. Dishub -->
-                <a href="#" class="block group h-full">
-                    <div class="glass-card group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="transition-delay: 300ms; min-height: 190px;">
-                        <!-- Glow effect -->
-                        <div class="absolute -top-10 -left-10 w-20 h-20 bg-blue/5 group-hover:bg-blue/15 transition-all duration-500 rounded-full blur-xl"></div>
-                        
-                        <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-9 h-9 rounded-lg bg-blue/10 flex items-center justify-center text-blue text-base group-hover:scale-110 group-hover:bg-blue/20 transition-all duration-300 shrink-0">
-                                    <i class="fas fa-mobile-alt"></i>
-                                </div>
-                                <h3 class="text-base font-serif font-bold text-gray-900 dark:text-white group-hover:text-blue transition-colors duration-300">Dishub pengaduan</h3>
-                            </div>
-                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Aplikasi cross-platform (Flutter) untuk sistem pelaporan pengaduan infrastruktur jalan oleh masyarakat.</p>
-                        </div>
-
-                        <div>
-                            <!-- Tags -->
-                            <div class="flex flex-wrap gap-1 mb-3">
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Flutter</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Dart</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Mobile</span>
-                            </div>
-
-                            <!-- Link Indicator -->
-                            <div class="text-[11px] font-semibold text-blue flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
-                                Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 3. SiagaOps -->
-                <a href="#" class="block group h-full">
-                    <div class="glass-card group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="min-height: 190px;">
-                        <!-- Glow effect -->
-                        <div class="absolute -top-10 -left-10 w-20 h-20 bg-blue/5 group-hover:bg-blue/15 transition-all duration-500 rounded-full blur-xl"></div>
-                        
-                        <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-9 h-9 rounded-lg bg-blue/10 flex items-center justify-center text-blue text-base group-hover:scale-110 group-hover:bg-blue/20 transition-all duration-300 shrink-0">
-                                    <i class="fas fa-ticket-alt"></i>
-                                </div>
-                                <h3 class="text-base font-serif font-bold text-gray-900 dark:text-white group-hover:text-blue transition-colors duration-300">Ticketing Portal</h3>
-                            </div>
-                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Portal operasional untuk manajemen tiket, kolaborasi tim, dan dasbor KPI performa real-time.</p>
-                        </div>
-
-                        <div>
-                            <!-- Tags -->
-                            <div class="flex flex-wrap gap-1 mb-3">
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Laravel</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Livewire</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Portal</span>
-                            </div>
-
-                            <!-- Link Indicator -->
-                            <div class="text-[11px] font-semibold text-blue flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
-                                Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 8. Web E-Commerce -->
-                <a href="#" class="block group h-full">
-                    <div class="glass-card group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="transition-delay: 150ms; min-height: 190px;">
-                        <!-- Glow effect -->
-                        <div class="absolute -top-10 -left-10 w-20 h-20 bg-blue/5 group-hover:bg-blue/15 transition-all duration-500 rounded-full blur-xl"></div>
-                        
-                        <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-9 h-9 rounded-lg bg-blue/10 flex items-center justify-center text-blue text-base group-hover:scale-110 group-hover:bg-blue/20 transition-all duration-300 shrink-0">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </div>
-                                <h3 class="text-base font-serif font-bold text-gray-900 dark:text-white group-hover:text-blue transition-colors duration-300">Web E-Commerce</h3>
-                            </div>
-                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Toko online produk game web dengan transaksi aman dan payment gateway.</p>
-                        </div>
-
-                        <div>
-                            <!-- Tags -->
-                            <div class="flex flex-wrap gap-1 mb-3">
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">React</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Node.js</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Stripe</span>
-                            </div>
-
-                            <!-- Link Indicator -->
-                            <div class="text-[11px] font-semibold text-blue flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
-                                Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 9. Artikel Web -->
-                <a href="#" class="block group h-full">
-                    <div class="glass-card group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="transition-delay: 300ms; min-height: 190px;">
-                        <!-- Glow effect -->
-                        <div class="absolute -top-10 -left-10 w-20 h-20 bg-blue/5 group-hover:bg-blue/15 transition-all duration-500 rounded-full blur-xl"></div>
-                        
-                        <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="w-9 h-9 rounded-lg bg-blue/10 flex items-center justify-center text-blue text-base group-hover:scale-110 group-hover:bg-blue/20 transition-all duration-300 shrink-0">
-                                    <i class="fas fa-newspaper"></i>
-                                </div>
-                                <h3 class="text-base font-serif font-bold text-gray-900 dark:text-white group-hover:text-blue transition-colors duration-300">Artikel Web</h3>
-                            </div>
-                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Platform publikasi artikel modern dengan sistem manajemen konten (CMS).</p>
-                        </div>
-
-                        <div>
-                            <!-- Tags -->
-                            <div class="flex flex-wrap gap-1 mb-3">
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">Tailwind</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">CMS</span>
-                                <span class="px-2 py-0.5 bg-blue/5 dark:bg-blue/10 text-blue text-[10px] rounded border border-blue/10 dark:border-blue/20">SEO</span>
-                            </div>
-
-                            <!-- Link Indicator -->
-                            <div class="text-[11px] font-semibold text-blue flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
-                                Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="kontak" class="py-24 relative">
-        <div class="max-w-3xl mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-4">Mari <span class="text-blue font-serif not-italic">Berkolaborasi</span></h2>
-                <div class="w-16 h-1 bg-blue mx-auto rounded-full"></div>
-            </div>
-
-            <form action="#" method="POST" class="glass-card p-8 md:p-12 reveal">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <label for="name" class="block text-gray-700 dark:text-gray-400 text-sm mb-2">Nama</label>
-                        <input type="text" id="name" name="name" required class="w-full bg-gray-100 dark:bg-surface border border-gray-300 dark:border-surfaceBorder rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-blue transition">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-gray-700 dark:text-gray-400 text-sm mb-2">Email</label>
-                        <input type="email" id="email" name="email" required class="w-full bg-gray-100 dark:bg-surface border border-gray-300 dark:border-surfaceBorder rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-blue transition">
-                    </div>
+        <!-- Tech Marquee -->
+        <section class="py-10 relative border-y border-ink/10">
+            <p class="text-center text-xs uppercase tracking-[0.3em] text-muted mb-6">Tech Stack</p>
+            <div class="marquee">
+                <div class="marquee__track">
+                    <span class="marquee__item"><i class="fab fa-laravel"></i> Laravel</span>
+                    <span class="marquee__item"><i class="fab fa-php"></i> PHP</span>
+                    <span class="marquee__item"><i class="fab fa-js"></i> JavaScript</span>
+                    <span class="marquee__item"><i class="fab fa-react"></i> React</span>
+                    <span class="marquee__item"><i class="fab fa-node-js"></i> Node.js</span>
+                    <span class="marquee__item"><i class="fas fa-wind"></i> Tailwind</span>
+                    <span class="marquee__item"><i class="fas fa-database"></i> MySQL</span>
+                    <span class="marquee__item"><i class="fab fa-bootstrap"></i> Bootstrap</span>
+                    <span class="marquee__item"><i class="fab fa-git-alt"></i> Git</span>
+                    <span class="marquee__item"><i class="fas fa-mobile-screen"></i> Flutter</span>
+                    <span class="marquee__item"><i class="fas fa-bolt"></i> Livewire</span>
+                    <span class="marquee__item"><i class="fas fa-brain"></i> AI / OCR</span>
                 </div>
-                <div class="mb-6">
-                    <label for="message" class="block text-gray-700 dark:text-gray-400 text-sm mb-2">Pesan</label>
-                    <textarea id="message" name="message" rows="5" required class="w-full bg-gray-100 dark:bg-surface border border-gray-300 dark:border-surfaceBorder rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-blue transition"></textarea>
-                </div>
-                <button type="submit" class="w-full px-8 py-4 bg-blue text-darker font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,123,255,0.4)] transition duration-300">
-                    Kirim Pesan
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <footer class="border-t border-white/10 bg-blue pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center md:text-left">
-            <div>
-                <a href="#" class="text-2xl font-serif font-bold text-white tracking-widest block mb-4">RYAN<span class="text-white">.DEV</span></a>
-                <p class="text-white/80 text-sm">Membangun solusi digital inovatif dengan desain modern dan logika pemrograman yang kuat.</p>
-            </div>
-            <div>
-                <h4 class="text-white font-medium mb-4">Navigasi</h4>
-                <ul class="space-y-2">
-                    <li><a href="#beranda" class="text-white/80 hover:text-white transition">Beranda</a></li>
-                    <li><a href="#tentang" class="text-white/80 hover:text-white transition">Tentang</a></li>
-                    <li><a href="#karya" class="text-white/80 hover:text-white transition">Karya</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-medium mb-4">Kontak</h4>
-                <p class="text-white/80 text-sm">mryannrizki11@gmail.com</p>
-                <div class="flex gap-4 mt-4 justify-center md:justify-start">
-                    <a href="#" class="text-white/80 hover:text-white transition"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-white/80 hover:text-white transition"><i class="fab fa-github"></i></a>
-                    <a href="#" class="text-white/80 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                <div class="marquee__track" aria-hidden="true">
+                    <span class="marquee__item"><i class="fab fa-laravel"></i> Laravel</span>
+                    <span class="marquee__item"><i class="fab fa-php"></i> PHP</span>
+                    <span class="marquee__item"><i class="fab fa-js"></i> JavaScript</span>
+                    <span class="marquee__item"><i class="fab fa-react"></i> React</span>
+                    <span class="marquee__item"><i class="fab fa-node-js"></i> Node.js</span>
+                    <span class="marquee__item"><i class="fas fa-wind"></i> Tailwind</span>
+                    <span class="marquee__item"><i class="fas fa-database"></i> MySQL</span>
+                    <span class="marquee__item"><i class="fab fa-bootstrap"></i> Bootstrap</span>
+                    <span class="marquee__item"><i class="fab fa-git-alt"></i> Git</span>
+                    <span class="marquee__item"><i class="fas fa-mobile-screen"></i> Flutter</span>
+                    <span class="marquee__item"><i class="fas fa-bolt"></i> Livewire</span>
+                    <span class="marquee__item"><i class="fas fa-brain"></i> AI / OCR</span>
                 </div>
             </div>
-        </div>
-        <div class="text-center pt-12 border-t border-white/20 mt-12">
-            <p class="text-white/80 text-sm"> &copy; 2026 Muhamad Ryan Rizki. All rights reserved. </p>
-        </div>
-    </footer>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="karya" class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-5xl font-display font-bold text-ink mb-4">Karya <span class="text-accent font-display italic">Terbaik</span></h2>
+                    <div class="w-16 h-1 bg-accent mx-auto rounded-full mb-6"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Flustra -->
+                    <a href="https://flustra.jagoankode.my.id/" class="block group h-full">
+                        <div class="glass-card tilt group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="min-height: 190px;">
+                            <div class="absolute -top-10 -left-10 w-20 h-20 bg-accent/5 group-hover:bg-accent/15 transition-all duration-500 rounded-full blur-xl"></div>
+                            <div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent text-base group-hover:scale-110 group-hover:bg-accent/20 transition-all duration-300 shrink-0">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <h3 class="text-base font-display font-bold text-ink group-hover:text-accent transition-colors duration-300">Flustra</h3>
+                                </div>
+                                <p class="text-xs text-muted mb-4 leading-relaxed">Platform SaaS keuangan terintegrasi dengan AI untuk OCR struk, pelacakan aset, dan perencanaan utang.</p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Laravel</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">AI (OCR)</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Tailwind</span>
+                                </div>
+                                <div class="text-[11px] font-semibold text-accent flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
+                                    Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- KLB Admin -->
+                    <a href="https://dcktrp.jakarta.go.id/" class="block group h-full">
+                        <div class="glass-card tilt group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="transition-delay: 150ms; min-height: 190px;">
+                            <div class="absolute -top-10 -left-10 w-20 h-20 bg-accent/5 group-hover:bg-accent/15 transition-all duration-500 rounded-full blur-xl"></div>
+                            <div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent text-base group-hover:scale-110 group-hover:bg-accent/20 transition-all duration-300 shrink-0">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <h3 class="text-base font-display font-bold text-ink group-hover:text-accent transition-colors duration-300">KLB Admin</h3>
+                                </div>
+                                <p class="text-xs text-muted mb-4 leading-relaxed">Sistem enterprise pemerintah untuk proses permohonan pelampauan KLB dan manajemen kontribusi fasos/fasum.</p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Laravel</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Bootstrap</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Enterprise</span>
+                                </div>
+                                <div class="text-[11px] font-semibold text-accent flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
+                                    Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- ERP Office -->
+                    <a href="#" class="block group h-full">
+                        <div class="glass-card tilt group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="transition-delay: 300ms; min-height: 190px;">
+                            <div class="absolute -top-10 -left-10 w-20 h-20 bg-accent/5 group-hover:bg-accent/15 transition-all duration-500 rounded-full blur-xl"></div>
+                            <div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent text-base group-hover:scale-110 group-hover:bg-accent/20 transition-all duration-300 shrink-0">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                    <h3 class="text-base font-display font-bold text-ink group-hover:text-accent transition-colors duration-300">ERP Office</h3>
+                                </div>
+                                <p class="text-xs text-muted mb-4 leading-relaxed">Sistem terintegrasi untuk mengotomatisasi keuangan, SDM, rantai pasok, dan inventaris bisnis.</p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Laravel</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">MySQL</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Tailwind</span>
+                                </div>
+                                <div class="text-[11px] font-semibold text-accent flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
+                                    Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- RuangRapat -->
+                    <a href="https://dcktrp.jakarta.go.id/" class="block group h-full">
+                        <div class="glass-card tilt group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="min-height: 190px;">
+                            <div class="absolute -top-10 -left-10 w-20 h-20 bg-accent/5 group-hover:bg-accent/15 transition-all duration-500 rounded-full blur-xl"></div>
+                            <div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent text-base group-hover:scale-110 group-hover:bg-accent/20 transition-all duration-300 shrink-0">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <h3 class="text-base font-display font-bold text-ink group-hover:text-accent transition-colors duration-300">RuangRapat</h3>
+                                </div>
+                                <p class="text-xs text-muted mb-4 leading-relaxed">Portal reservasi ruang rapat dan kendaraan kantor terintegrasi secara real-time.</p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">PHP</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">MySQL</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Tailwind</span>
+                                </div>
+                                <div class="text-[11px] font-semibold text-accent flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
+                                    Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Pos Kasir -->
+                    <a href="https://posksrv2.jagoankode.my.id/" class="block group h-full">
+                        <div class="glass-card tilt group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="transition-delay: 150ms; min-height: 190px;">
+                            <div class="absolute -top-10 -left-10 w-20 h-20 bg-accent/5 group-hover:bg-accent/15 transition-all duration-500 rounded-full blur-xl"></div>
+                            <div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent text-base group-hover:scale-110 group-hover:bg-accent/20 transition-all duration-300 shrink-0">
+                                        <i class="fas fa-cash-register"></i>
+                                    </div>
+                                    <h3 class="text-base font-display font-bold text-ink group-hover:text-accent transition-colors duration-300">Pos Kasir</h3>
+                                </div>
+                                <p class="text-xs text-muted mb-4 leading-relaxed">Aplikasi kasir (POS) dan manajemen inventaris yang terintegrasi dengan asisten virtual berbasis AI.</p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Laravel</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">AI Assistant</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Tailwind</span>
+                                </div>
+                                <div class="text-[11px] font-semibold text-accent flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
+                                    Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Dishub -->
+                    <a href="#" class="block group h-full">
+                        <div class="glass-card tilt group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="transition-delay: 300ms; min-height: 190px;">
+                            <div class="absolute -top-10 -left-10 w-20 h-20 bg-accent/5 group-hover:bg-accent/15 transition-all duration-500 rounded-full blur-xl"></div>
+                            <div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent text-base group-hover:scale-110 group-hover:bg-accent/20 transition-all duration-300 shrink-0">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <h3 class="text-base font-display font-bold text-ink group-hover:text-accent transition-colors duration-300">Dishub Pengaduan</h3>
+                                </div>
+                                <p class="text-xs text-muted mb-4 leading-relaxed">Aplikasi cross-platform (Flutter) untuk sistem pelaporan pengaduan infrastruktur jalan oleh masyarakat.</p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Flutter</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Dart</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Mobile</span>
+                                </div>
+                                <div class="text-[11px] font-semibold text-accent flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
+                                    Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Ticketing Portal -->
+                    <a href="#" class="block group h-full">
+                        <div class="glass-card tilt group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="min-height: 190px;">
+                            <div class="absolute -top-10 -left-10 w-20 h-20 bg-accent/5 group-hover:bg-accent/15 transition-all duration-500 rounded-full blur-xl"></div>
+                            <div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent text-base group-hover:scale-110 group-hover:bg-accent/20 transition-all duration-300 shrink-0">
+                                        <i class="fas fa-ticket-alt"></i>
+                                    </div>
+                                    <h3 class="text-base font-display font-bold text-ink group-hover:text-accent transition-colors duration-300">Ticketing Portal</h3>
+                                </div>
+                                <p class="text-xs text-muted mb-4 leading-relaxed">Portal operasional untuk manajemen tiket, kolaborasi tim, dan dasbor KPI performa real-time.</p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Laravel</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Livewire</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Portal</span>
+                                </div>
+                                <div class="text-[11px] font-semibold text-accent flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
+                                    Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Web E-Commerce -->
+                    <a href="#" class="block group h-full">
+                        <div class="glass-card tilt group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="transition-delay: 150ms; min-height: 190px;">
+                            <div class="absolute -top-10 -left-10 w-20 h-20 bg-accent/5 group-hover:bg-accent/15 transition-all duration-500 rounded-full blur-xl"></div>
+                            <div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent text-base group-hover:scale-110 group-hover:bg-accent/20 transition-all duration-300 shrink-0">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <h3 class="text-base font-display font-bold text-ink group-hover:text-accent transition-colors duration-300">Web E-Commerce</h3>
+                                </div>
+                                <p class="text-xs text-muted mb-4 leading-relaxed">Toko online produk game web dengan transaksi aman dan payment gateway.</p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">React</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Node.js</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Stripe</span>
+                                </div>
+                                <div class="text-[11px] font-semibold text-accent flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
+                                    Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Artikel Web -->
+                    <a href="#" class="block group h-full">
+                        <div class="glass-card tilt group overflow-hidden reveal relative p-5 h-full flex flex-col justify-between" style="transition-delay: 300ms; min-height: 190px;">
+                            <div class="absolute -top-10 -left-10 w-20 h-20 bg-accent/5 group-hover:bg-accent/15 transition-all duration-500 rounded-full blur-xl"></div>
+                            <div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent text-base group-hover:scale-110 group-hover:bg-accent/20 transition-all duration-300 shrink-0">
+                                        <i class="fas fa-newspaper"></i>
+                                    </div>
+                                    <h3 class="text-base font-display font-bold text-ink group-hover:text-accent transition-colors duration-300">Artikel Web</h3>
+                                </div>
+                                <p class="text-xs text-muted mb-4 leading-relaxed">Platform publikasi artikel modern dengan sistem manajemen konten (CMS).</p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">Tailwind</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">CMS</span>
+                                    <span class="px-2 py-0.5 bg-accent/10 text-accent text-[10px] rounded border border-accent/20">SEO</span>
+                                </div>
+                                <div class="text-[11px] font-semibold text-accent flex items-center gap-1 transition-all duration-300 group-hover:translate-x-1">
+                                    Kunjungi Proyek <i class="fas fa-arrow-right text-[9px]"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="kontak" class="py-24 relative">
+            <div class="max-w-3xl mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-5xl font-display font-bold text-ink mb-4">Mari <span class="text-accent font-display italic">Berkolaborasi</span></h2>
+                    <div class="w-16 h-1 bg-accent mx-auto rounded-full"></div>
+                </div>
+
+                <form action="#" method="POST" class="glass-card p-8 md:p-12 reveal">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="name" class="block text-muted text-sm mb-2">Nama</label>
+                            <input type="text" id="name" name="name" required class="w-full bg-surface border border-surfaceBorder rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-accent transition">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-muted text-sm mb-2">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full bg-surface border border-surfaceBorder rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-accent transition">
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-muted text-sm mb-2">Pesan</label>
+                        <textarea id="message" name="message" rows="5" required class="w-full bg-surface border border-surfaceBorder rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-accent transition"></textarea>
+                    </div>
+                    <button type="submit" class="w-full px-8 py-4 bg-accent text-paper font-bold rounded-lg hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] transition duration-300">
+                        Kirim Pesan
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <footer class="border-t border-ink/15 pt-16 pb-8 relative">
+            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center md:text-left">
+                <div>
+                    <a href="#" class="text-2xl font-display font-bold text-ink tracking-widest block mb-4">RYAN<span class="text-accent">.DEV</span></a>
+                    <p class="text-muted text-sm">Membangun solusi digital inovatif dengan desain modern dan logika pemrograman yang kuat.</p>
+                </div>
+                <div>
+                    <h4 class="text-ink font-medium mb-4">Navigasi</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#beranda" class="text-muted hover:text-accent transition">Beranda</a></li>
+                        <li><a href="#tentang" class="text-muted hover:text-accent transition">Tentang</a></li>
+                        <li><a href="#karya" class="text-muted hover:text-accent transition">Karya</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-ink font-medium mb-4">Kontak</h4>
+                    <p class="text-muted text-sm">mryannrizki11@gmail.com</p>
+                    <div class="flex gap-4 mt-4 justify-center md:justify-start">
+                        <a href="#" class="text-muted hover:text-accent transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-muted hover:text-accent transition"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-muted hover:text-accent transition"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center pt-12 border-t border-ink/15 mt-12">
+                <p class="text-muted text-sm"> &copy; 2026 Muhamad Ryan Rizki. All rights reserved. </p>
+            </div>
+        </footer>
+
+    </div>
 
     <!-- Scripts -->
     <script src="js/main.js"></script>

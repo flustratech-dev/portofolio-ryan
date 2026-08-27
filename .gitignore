@@ -1,0 +1,15 @@
+# Agent tooling & local editor config
+.agents/
+.claude/
+skills-lock.json
+
+# Source photos before background removal (bahan mentah, tidak perlu di web)
+images/originals/
+
+# File nyasar
+images/bautfavicon.png
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
